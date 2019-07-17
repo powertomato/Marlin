@@ -185,6 +185,34 @@
  *              EXP2                                              EXP1
  */
 #if HAS_SPI_LCD
+  #if ENABLED(ZONESTAR_LCD)
+/**
+ *                _____
+ *            5V | · · | GND
+ *       D4 1.23 | · · | 1.22
+ *       D5 1.21 | · ·   1.20 LCD_RS
+ *       D6 1.19 | · · | 1.18 LCD_EN
+ *       D7 0.28 | · · | 1.30 ADC_KEYPAD
+ *                -----
+ *                EXP1
+ *                _____
+ *            D7 | · · | ADC_KEYPAD
+ *            D6 | · · | LCD_EN
+ *            D5 | · ·   LCD_RS
+ *            D4 | · · | NC
+ *           +5V | · · | GND
+ *                -----
+ *             ZONESTAR LCD
+ */
+    #define LCD_PINS_RS      P1_20
+    #define LCD_PINS_ENABLE  P1_18
+    #define LCD_PINS_D4      P1_23
+    #define LCD_PINS_D5      P1_21
+    #define LCD_PINS_D6      P1_19
+    #define LCD_PINS_D7      P0_28
+    #define ADC_KEYPAD_PIN   4 // ACD Channel 4 = P1_30, not 5V tolerant
+  #endif // ZONESTAR_LCD
+
   #define BEEPER_PIN       P1_30   // (37) not 5V tolerant
   #define BTN_ENC          P0_28   // (58) open-drain
 
