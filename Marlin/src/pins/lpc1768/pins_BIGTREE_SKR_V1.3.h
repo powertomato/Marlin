@@ -83,6 +83,17 @@
   #define Z_CS_PIN         P1_10
 #endif
 
+#if ENABLED(Z_DUAL_STEPPER_DRIVERS)
+
+#define Z2_STEP_PIN        P0_01
+#define Z2_DIR_PIN         P0_00
+#define Z2_ENABLE_PIN      P0_10
+#ifndef Z2_CS_PIN
+  #define Z2_CS_PIN        P1_01
+#endif
+
+#endif
+
 #define E0_STEP_PIN        P2_13
 #define E0_DIR_PIN         P0_11
 #define E0_ENABLE_PIN      P2_12
@@ -185,6 +196,10 @@
  *              EXP2                                              EXP1
  */
 #if HAS_SPI_LCD
+
+  #define BEEPER_PIN       P1_30   // (37) not 5V tolerant
+  #define BTN_ENC          P0_28   // (58) open-drain
+
   #if ENABLED(ZONESTAR_LCD)
 /**
  *                _____
@@ -211,12 +226,7 @@
     #define LCD_PINS_D6      P1_19
     #define LCD_PINS_D7      P0_28
     #define ADC_KEYPAD_PIN   4 // ACD Channel 4 = P1_30, not 5V tolerant
-  #endif // ZONESTAR_LCD
-
-  #define BEEPER_PIN       P1_30   // (37) not 5V tolerant
-  #define BTN_ENC          P0_28   // (58) open-drain
-
-  #if ENABLED(CR10_STOCKDISPLAY)
+  #elif ENABLED(CR10_STOCKDISPLAY)
     #define LCD_PINS_RS    P1_22
 
     #define BTN_EN1        P1_18
